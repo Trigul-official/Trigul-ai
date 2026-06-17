@@ -1,6 +1,6 @@
 // ─── Trigul AI Frontend ─────────────────────────────────────────────
 
-const API_BASE = 'http://localhost:8000';
+const API_BASE = 'http://localhost:8000/v1';
 
 class TrigulApp {
     constructor() {
