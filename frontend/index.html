@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trigul - AI Assistant</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <div id="app">
+        <!-- Sidebar -->
+        <aside id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                            <path d="M2 17l10 5 10-5" />
+                            <path d="M2 12l10 5 10-5" />
+                        </svg>
+                    </div>
+                    <span class="logo-text">Trigul</span>
+                </div>
+                <button id="sidebar-toggle" class="icon-btn">☰</button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-view="chat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                    </svg>
+                    <span>New Chat</span>
+                </button>
+                <button class="nav-item" data-view="docs">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" />
+                        <path d="M14 2v6h6" />
+                    </svg>
+                    <span>Documents</span>
+                </button>
+                <button class="nav-item" data-view="settings">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3" />
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                    </svg>
+                    <span>Settings</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="status-indicator">
+                    <span class="status-dot online"></span>
+                    <span class="status-text">Online</span>
+                </div>
+                <div class="model-info">
+                    <span>Model: Trigul-7B</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main id="main-content">
+            <!-- Chat View -->
+            <div id="chat-view" class="view active">
+                <div class="chat-header">
+                    <h1>Trigul AI Assistant</h1>
+                    <div class="header-actions">
+                        <button id="new-chat-btn" class="btn btn-secondary">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                                <path d="M12 5v14M5 12h14" />
+                            </svg>
+                            New Chat
+                        </button>
+                    </div>
+                </div>
+
+                <div id="chat-messages" class="chat-messages">
+                    <div class="welcome-message">
+                        <div class="welcome-icon">✨</div>
+                        <h2>Welcome to Trigul</h2>
+                        <p>Your advanced AI assistant. Ask me anything!</p>
+                        <div class="suggestions">
+                            <button class="suggestion-btn">Explain quantum computing</button>
+                            <button class="suggestion-btn">Write a poem about AI</button>
+                            <button class="suggestion-btn">Help me with Python code</button>
+                            <button class="suggestion-btn">What's the meaning of life?</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                    <div class="chat-input-wrapper">
+                        <textarea 
+                            id="chat-input" 
+                            rows="1" 
+                            placeholder="Ask Trigul anything..."
+                            class="chat-input"
+                        ></textarea>
+                        <button id="send-btn" class="send-btn">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="input-footer">
+                        <span>Trigul may occasionally generate inaccurate information</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documents View -->
+            <div id="docs-view" class="view">
+                <div class="view-header">
+                    <h2>Knowledge Base</h2>
+                    <button id="add-doc-btn" class="btn btn-primary">Add Document</button>
+                </div>
+                <div id="documents-list" class="documents-list">
+                    <div class="empty-state">
+                        <div class="empty-icon">📄</div>
+                        <h3>No documents added</h3>
+                        <p>Add documents to enhance Trigul's knowledge</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings View -->
+            <div id="settings-view" class="view">
+                <div class="view-header">
+                    <h2>Settings</h2>
+                </div>
+                <div class="settings-container">
+                    <div class="settings-group">
+                        <h3>Model Configuration</h3>
+                        <div class="setting-item">
+                            <label>Temperature</label>
+                            <input type="range" id="temperature" min="0" max="2" step="0.1" value="0.7" />
+                            <span id="temperature-value">0.7</span>
+                        </div>
+                        <div class="setting-item">
+                            <label>Max Tokens</label>
+                            <input type="number" id="max-tokens" value="2048" min="100" max="4096" />
+                        </div>
+                    </div>
+                    <div class="settings-group">
+                        <h3>System</h3>
+                        <div class="setting-item">
+                            <label>Status</label>
+                            <span id="system-status" class="status-badge online">Online</span>
+                        </div>
+                        <div class="setting-item">
+                            <label>Model</label>
+                            <span id="model-status">Trigul-7B</span>
+                        </div>
+                        <div class="setting-item">
+                            <label>Documents</label>
+                            <span id="doc-count">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Document Modal -->
+    <div id="doc-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Document</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <textarea id="doc-content" rows="10" placeholder="Paste your document content here..."></textarea>
+                <input id="doc-metadata" placeholder="Metadata (optional)" />
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary modal-close">Cancel</button>
+                <button id="save-doc-btn" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
